@@ -10,7 +10,7 @@ export default class CategoryList extends Component {
     this.getCategories();
   }
  getCategories=()=>{
-   fetch('http://localhost:3000/categories')
+   fetch('http://localhost:3001/categories')
    .then(response=>response.json())
    .then(data=>this.setState({categories:data}))
  }
@@ -20,7 +20,7 @@ export default class CategoryList extends Component {
         <h3>{this.props.info.title}</h3>
         <ListGroup>
           {this.state.categories.map(category => (
-            <ListGroupItem
+            <ListGroupItem active={category.categoryName===this.props.currentCategory?true:false}
               onClick={() => this.props.changeCategory(category)}
               key={category.id}
             >
@@ -28,7 +28,7 @@ export default class CategoryList extends Component {
             </ListGroupItem>
           ))}
         </ListGroup>
-        <h4>{this.props.currentCategory}</h4>
+        {/* <h4>{this.props.currentCategory}</h4> */}
       </div>
     );
   }
